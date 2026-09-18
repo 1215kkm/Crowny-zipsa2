@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f8f7f2">
+<title>CROWNY 집사 · Brand UI Prototype</title><link rel="stylesheet" href="brand-system.css">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'%3E%3Cpath d='M8 39V12l16 17 8-20 9 20 16-17-1 27Z M25 10l15 16M40 10 25 26' fill='none' stroke='%23a1874d' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body><main class="app-shell" id="app">
+<section class="screen splash active" data-screen="splash" aria-label="스플래시">
+  <button class="splash-skip" data-go="login">건너뛰기</button>
+  <div class="splash-logo"><svg class="brand-mark" viewBox="0 0 80 58"><path d="M8 48 9 15l21 22L39 9l11 28 22-21-1 32Z M31 11l18 21M49 11 31 32" fill="none" stroke="#a1874d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>CROWNY</strong><span>집사</span></div>
+  <div class="character-zone large"><canvas class="crowny-character" width="340" height="310" tabindex="0" data-state="rest" aria-label="잠시 쉬고 있는 크라우니 집사"></canvas></div>
+  <p class="splash-copy">곁에서, 조용히.</p>
+</section>
+<section class="screen" data-screen="login">
+  <header class="topbar"><div class="brand"><span data-brand-mark></span>CROWNY 집사</div><button class="icon-btn" data-menu>☰</button></header>
+  <div class="character-zone"><canvas class="crowny-character" width="300" height="230" tabindex="0" data-state="greet"></canvas><span class="speech">다시 만나 반가워요.</span></div>
+  <div class="page-kicker">Welcome back</div><h1>집사가 기다리고<br>있었어요.</h1>
+  <label class="field"><span>아이디</span><input placeholder="아이디를 입력해주세요"></label><label class="field"><span>비밀번호</span><input type="password" placeholder="비밀번호를 입력해주세요"></label>
+  <button class="primary" data-go="home">집사 깨우기</button><div class="button-row"><button class="text-link" data-go="recovery">비밀번호 찾기</button><button class="text-link" data-go="signup">집사 배정받기</button></div>
+</section>
+<section class="screen" data-screen="signup">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">집사 배정받기</div><span></span></header>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="listen"></canvas><span class="speech">소개해 준 분을 알려주세요.</span></div>
+  <h1>곁을 지킬 집사를<br>배정할게요.</h1><p class="sub">가입 그룹과 소개자의 아이디가 필요해요.</p>
+  <div class="choice-row"><button class="chip active">일반</button><button class="chip">운영자</button><button class="chip">파트너</button><button class="chip">가족</button></div>
+  <label class="field"><span>소개자 아이디</span><input placeholder="소개자 아이디"></label><label class="field"><span>사용할 아이디</span><input placeholder="영문·숫자 3자 이상"></label><label class="field"><span>비밀번호</span><input type="password" placeholder="4자 이상"></label><button class="primary">집사 배정받기</button>
+</section>
+<section class="screen" data-screen="recovery">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">비밀번호 찾기</div><span></span></header>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="search"></canvas><span class="speech">확인할 내용을 함께 준비할게요.</span></div>
+  <h1>관리자에게 보낼<br>요청문을 만들어요.</h1><p class="sub">현재는 관리자 확인 후 비밀번호를 초기화해요.</p><label class="field"><span>아이디</span><input placeholder="가입한 아이디"></label><button class="primary">요청문 만들기 · 복사</button>
+</section>
+<section class="screen" data-screen="home" data-nav="home">
+  <header class="topbar"><div class="brand"><span data-brand-mark></span>CROWNY 집사</div><button class="icon-btn" data-go="threads">☰</button></header>
+  <div class="page-kicker">Ready</div><h1>오늘도 곁에서<br>조용히 챙길게요.</h1>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="listen"></canvas><span class="speech">무엇부터 살펴볼까요?</span></div>
+  <section class="hero-summary"><div class="sub">위임한 작업</div><div class="big">0</div><button class="text-link" data-go="tasks">전체 보기 →</button></section>
+  <div class="section-head section"><div><div class="sub">보는 중</div><h2>내 컴퓨터</h2></div><button class="text-link" data-go="system">상태 보기</button></div>
+  <div class="metric"><div><small>가동시간</small><strong>14일</strong></div><div><small>디스크</small><strong>86%</strong></div><div><small>메모리 여유</small><strong>34%</strong></div><div><small>부하</small><strong>44%</strong></div></div>
+  <div class="notice">디스크 정리가 필요해 보여요. 맡겨두시면 차례대로 확인할게요.</div><div class="command-bar"><input placeholder="집사에게 말하기"><button data-character-action="listen">↑</button></div>
+</section>
+<section class="screen" data-screen="tasks" data-nav="home">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">위임한 작업</div><button class="icon-btn" data-go="tasklog">◌</button></header>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="work"></canvas><span class="speech">순서를 정리해둘게요.</span></div>
+  <h1>맡겨둔 일을<br>한눈에 확인해요.</h1><div class="choice-row"><button class="chip active">전체 0</button><button class="chip">진행 중</button><button class="chip">완료</button></div>
+  <div class="empty"><h3>아직 맡긴 작업이 없어요.</h3><p>필요한 일을 말하면 목록에 정리해요.</p><button class="secondary" data-character-action="work">＋ 새 작업 위임</button></div>
+</section>
+<section class="screen" data-screen="tasklog" data-nav="home">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">작업 로그</div><span></span></header>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="search"></canvas><span class="speech">기록을 차근차근 살펴볼게요.</span></div>
+  <h1>작업의 흐름을<br>시간순으로 봐요.</h1><div class="line-list"><button class="line-row"><span class="status-dot"></span><span class="grow"><strong>브라우저 유지보수</strong><small>연결 기계 · 대기 중</small></span><span class="arrow">›</span></button><button class="line-row"><span class="grow"><strong>최근 실행 기록</strong><small>완료·중단·승인 대기</small></span><span class="arrow">›</span></button></div>
+</section>
+<section class="screen" data-screen="system" data-nav="home">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">시스템 상태</div><button class="icon-btn" data-character-action="sync">↻</button></header>
+  <div class="character-zone"><canvas class="crowny-character" width="300" height="230" tabindex="0" data-state="search"></canvas><span class="speech">지금 상태를 살펴보고 있어요.</span></div><h1>안정적으로<br>곁을 지키고 있어요.</h1>
+  <div class="metric"><div><small>가동시간</small><strong>14일</strong></div><div><small>부하</small><strong>44%</strong></div><div><small>회원</small><strong>21명</strong></div><div><small>대화방</small><strong>7개</strong></div></div><div class="notice">주의가 필요한 항목만 먼저 보여주고, 세부 수치는 펼쳐서 확인해요.</div>
+</section>
+<section class="screen" data-screen="help" data-nav="home">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">집사 도움말</div><span></span></header>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="guide"></canvas><span class="speech">짧게 말해도 알아들을게요.</span></div><h1>할 수 있는 일을<br>찾아보세요.</h1>
+  <div class="line-list"><button class="line-row"><span class="grow"><strong>상태</strong><small>서버와 연결된 컴퓨터 상태</small></span><span class="arrow">›</span></button><button class="line-row"><span class="grow"><strong>방 목록</strong><small>대화방 수와 최근 방</small></span><span class="arrow">›</span></button><button class="line-row"><span class="grow"><strong>백업</strong><small>데이터 백업 요청</small></span><span class="arrow">›</span></button><button class="line-row"><span class="grow"><strong>원격 작업</strong><small>작업큐·로그·보고·취소</small></span><span class="arrow">›</span></button></div>
+</section>
+<section class="screen" data-screen="threads" data-nav="home">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">집사 대화</div><button class="icon-btn">＋</button></header><label class="field"><span class="sr-only">대화 검색</span><input placeholder="대화 검색"></label>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="message"></canvas><span class="speech">이야기한 내용을 기억해둘게요.</span></div>
+  <div class="line-list"><button class="line-row"><span class="grow"><strong>새 대화</strong><small>조금 전 · 0건</small></span><span class="arrow">•••</span></button><button class="line-row"><span class="grow"><strong>시크릿</strong><small>7건 · 비공개 대화</small></span><span class="arrow">•••</span></button></div><div class="button-row"><button class="secondary">이름 변경</button><button class="secondary">시크릿 전환</button></div>
+</section>
+<section class="screen" data-screen="appearance" data-nav="home">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">화면 꾸미기</div><span></span></header><h1>내 눈에 편한<br>대화방을 만들어요.</h1>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="rest"></canvas><span class="speech">차분한 색을 골라볼까요?</span></div>
+  <div class="section"><h3>채팅 배경</h3><div class="palette"><button class="swatch active" style="background:#f8f7f2"></button><button class="swatch" style="background:#fffefa"></button><button class="swatch" style="background:#1f2924"></button><button class="swatch" style="background:#dce8dc"></button></div><h3>글꼴</h3><div class="choice-row"><button class="chip active">크라우니고딕</button><button class="chip">시스템</button><button class="chip">명조</button></div><h3 class="section">글자 크기</h3><div class="choice-row"><button class="chip">작게</button><button class="chip active">보통</button><button class="chip">크게</button></div></div>
+</section>
+<section class="screen" data-screen="collab" data-nav="collab">
+  <header class="topbar"><div class="brand"><span data-brand-mark></span>협업방</div><button class="icon-btn" data-go="collab-new">＋</button></header>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="guide"></canvas><span class="speech">사람과 집사를 한자리에 모아요.</span></div><h1>함께할 일을<br>한곳에서 나눠요.</h1>
+  <div class="choice-row"><button class="chip active">전체 0</button><button class="chip">집사 상주 0</button><button class="chip">안읽음 0</button></div><div class="line-list section"><button class="line-row" data-go="machine"><span class="status-dot"></span><span class="grow"><strong>내 컴퓨터 / 브라우저 유지보수</strong><small>기계간 요청</small></span><span class="arrow">›</span></button></div><div class="empty"><p>아직 협업방이 없어요.</p><button class="secondary" data-go="collab-new">새 협업방 만들기</button></div>
+</section>
+<section class="screen" data-screen="collab-new" data-nav="collab">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">새 협업방</div><span></span></header>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="listen"></canvas><span class="speech">함께할 사람을 알려주세요.</span></div><h1>사람과 집사가<br>함께할 방을 만들어요.</h1>
+  <label class="field"><span>방 제목</span><input placeholder="예: 3분기 기획 협업"></label><label class="field"><span>친구 아이디</span><input placeholder="친구 아이디 입력"></label><div class="notice">집사는 이 방에 상주해요. “@집사”로 부르면 응답합니다.</div><button class="primary section">협업방 만들기</button>
+</section>
+<section class="screen" data-screen="machine" data-nav="collab">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">기계간 요청</div><span></span></header>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="work"></canvas><span class="speech">실행 결과를 계속 지켜보고 있어요.</span></div><h1>내 컴퓨터에<br>작업을 전달해요.</h1>
+  <div class="sub">터미널 출력</div><div class="terminal">$ checking for updates
++ update installed
++ waiting for approval
+
+요청은 전송 전에 한 번 더 확인해요.</div><label class="field"><span>요청할 작업</span><textarea placeholder="수정할 내용을 구체적으로 적어주세요"></textarea></label><button class="primary" data-character-action="warn">확인하고 전송</button>
+</section>
+<section class="screen" data-screen="chat" data-nav="chat">
+  <header class="topbar"><div class="brand"><span data-brand-mark></span>채팅</div><button class="icon-btn" data-go="chat-new">＋</button></header><label class="field"><span class="sr-only">검색</span><input placeholder="이름·메시지 검색"></label>
+  <div class="choice-row"><button class="chip active">전체</button><button class="chip">안읽음</button><button class="chip">협업</button><button class="chip">집사</button></div><div class="character-zone"><canvas class="crowny-character" width="300" height="230" tabindex="0" data-state="message"></canvas><span class="speech">새로운 이야기를 기다리고 있어요.</span></div>
+  <div class="empty"><h3>아직 대화가 없어요.</h3><p>친구를 선택하면 바로 이야기를 시작할 수 있어요.</p><button class="secondary" data-go="chat-new">새 대화 시작</button></div>
+</section>
+<section class="screen" data-screen="chat-new" data-nav="chat">
+  <header class="topbar"><button class="icon-btn" data-back>‹</button><div class="brand">새 대화 시작</div><span></span></header>
+  <div class="character-zone small"><canvas class="crowny-character" width="220" height="180" tabindex="0" data-state="search"></canvas><span class="speech">대화할 친구를 찾아볼게요.</span></div><h1>누구와 이야기할까요?</h1><label class="field"><span>친구 검색</span><input placeholder="아이디 또는 이름"></label><div class="empty"><p>아직 친구가 없어요.</p><button class="secondary">친구 추가하기</button></div>
+</section>
+<nav class="bottom-nav"><button data-nav="home" data-go="home">집사</button><button data-nav="collab" data-go="collab">협업</button><button data-nav="chat" data-go="chat">채팅</button></nav>
+<aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-panel"><div class="drawer-title"><h2>화면 목록</h2><button class="icon-btn" data-close-menu>×</button></div><div id="screenLinks"></div></div></aside>
+<nav class="preview-nav" aria-label="임시 화면 미리보기"><button id="previewPrev">← 이전</button><span id="previewLabel" aria-live="polite"></span><button id="previewNext">다음 →</button></nav></main><script src="crowny-character.js"></script><script>
+const brandMark='<svg class="brand-mark" viewBox="0 0 80 58" aria-hidden="true"><path d="M8 48 9 15l21 22L39 9l11 28 22-21-1 32Z M31 11l18 21M49 11 31 32" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+document.querySelectorAll('[data-brand-mark]').forEach(e=>e.innerHTML=brandMark);
+const labels={splash:'스플래시',login:'로그인',signup:'집사 배정',recovery:'비밀번호 찾기',home:'집사 홈',tasks:'위임 작업',tasklog:'작업 로그',system:'시스템 상태',help:'도움말',threads:'집사 대화',appearance:'화면 꾸미기',collab:'협업방','collab-new':'새 협업방',machine:'기계간 요청',chat:'채팅','chat-new':'새 대화'};
+const historyStack=[];let current='splash';const AUTO_ADVANCE_SPLASH=false;
+function go(id,push=true){const next=document.querySelector('[data-screen="'+id+'"]');if(!next)return;if(push&&current!==id)historyStack.push(current);document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s===next));current=id;document.querySelector('.bottom-nav').style.display=['splash','login','signup','recovery'].includes(id)?'none':'grid';document.querySelectorAll('.bottom-nav button').forEach(b=>b.classList.toggle('active',b.dataset.nav===next.dataset.nav));document.querySelector('#drawer').classList.remove('open');window.scrollTo(0,0);updatePreview()}
+document.addEventListener('click',e=>{const goBtn=e.target.closest('[data-go]');if(goBtn)go(goBtn.dataset.go);const back=e.target.closest('[data-back]');if(back)go(historyStack.pop()||'home',false);if(e.target.closest('[data-menu]'))document.querySelector('#drawer').classList.add('open');if(e.target.closest('[data-close-menu]')||e.target===document.querySelector('#drawer'))document.querySelector('#drawer').classList.remove('open');const act=e.target.closest('[data-character-action]');if(act)document.querySelector('.screen.active .crowny-character')?._crowny?.trigger(act.dataset.characterAction,1600)});
+document.querySelectorAll('.chip').forEach(chip=>chip.addEventListener('click',()=>{chip.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));chip.classList.add('active')}));
+document.querySelectorAll('.swatch').forEach(s=>s.addEventListener('click',()=>{s.parentElement.querySelectorAll('.swatch').forEach(x=>x.classList.remove('active'));s.classList.add('active')}));
+const links=document.querySelector('#screenLinks');Object.entries(labels).filter(([k])=>k!=='splash').forEach(([id,label],i)=>{const b=document.createElement('button');b.className='screen-link';b.dataset.go=id;b.innerHTML='<span>'+label+'</span><small>'+String(i+1).padStart(2,'0')+'</small>';links.append(b)});
+const screenOrder=Object.keys(labels);
+function updatePreview(){const i=screenOrder.indexOf(current);document.querySelector('#previewPrev').disabled=i===0;document.querySelector('#previewNext').disabled=i===screenOrder.length-1;document.querySelector('#previewLabel').innerHTML='<small>임시 미리보기 · '+(i+1)+' / '+screenOrder.length+'</small>'+labels[current]}
+document.querySelector('#previewPrev').onclick=()=>go(screenOrder[Math.max(0,screenOrder.indexOf(current)-1)],false);
+document.querySelector('#previewNext').onclick=()=>go(screenOrder[Math.min(screenOrder.length-1,screenOrder.indexOf(current)+1)],false);
+updatePreview();CrownyCharacters.init();document.querySelector('.bottom-nav').style.display='none';if(AUTO_ADVANCE_SPLASH&&!matchMedia('(prefers-reduced-motion:reduce)').matches)setTimeout(()=>{if(current==='splash')go('login')},3800);
+window.CrownyPrototype={go,characters:CrownyCharacters,config:{AUTO_ADVANCE_SPLASH}};
+</script></body></html>
