@@ -4,7 +4,7 @@ function drawMetalCrown(c){
  c.lineCap='round';c.lineJoin='round';outline();c.lineWidth=7;c.strokeStyle='#715023';c.stroke();c.lineWidth=5.4;c.strokeStyle=gold;c.stroke();
  c.save();c.translate(-.55,-.75);outline();const light=c.createLinearGradient(-40,-20,40,22);light.addColorStop(0,'#fff4cbaa');light.addColorStop(.4,'#fff1b54d');light.addColorStop(.6,'#fff1b500');light.addColorStop(1,'#fff5d6aa');c.lineWidth=1.25;c.strokeStyle=light;c.stroke();c.restore();
 }
-const CROWNY_CHARACTER_DEFAULTS={bodySrc:'assets/crowny-water-body.png',gold:'#a1874d',ink:'#1f2924',water:'#195646'};
+const CROWNY_CHARACTER_DEFAULTS={bodySrc:'assets/original-crowned-body.png',gold:'#a1874d',ink:'#1f2924',water:'#195646'};
 class CrownyCharacter{
   constructor(canvas,options={}){
     this.canvas=canvas;this.ctx=canvas.getContext('2d');this.options={...CROWNY_CHARACTER_DEFAULTS,...options};
@@ -34,6 +34,7 @@ class CrownyCharacter{
     return{x,y,r}
   }
   face(cx,cy,state,t){const blink=!this.reduced&&t%4.6>4.42,gx=this.pointer.dx*8,gy=this.pointer.dy*5,closed=blink||['rest','sleep','success'].includes(state);const eye=(x,y)=>closed?this.line(c=>{c.moveTo(x-6,y);c.quadraticCurveTo(x,y+6,x+6,y)},this.options.ink,2.4):this.oval(x+gx,y+gy,3.2,4.5,this.options.ink);eye(cx-14,cy);eye(cx+14,cy);
+    if(state==='curious'){const c=this.ctx;c.save();c.fillStyle=this.options.gold;c.font='600 24px sans-serif';c.fillText('?',cx+31,cy-19+Math.sin(t*1.4)*2);c.restore();this.line(c=>{c.moveTo(cx+8,cy-12);c.quadraticCurveTo(cx+14,cy-17,cx+20,cy-13)},this.options.ink,1.6)}
     if(state==='surprise'||state==='warn')this.line(c=>c.ellipse(cx,cy+20,4.5,6,0,0,Math.PI*2),this.options.ink,2);
     else if(!['rest','sleep'].includes(state))this.line(c=>{c.moveTo(cx-7,cy+18);c.quadraticCurveTo(cx,cy+25,cx+7,cy+18)},this.options.ink,2)
   }
@@ -51,8 +52,8 @@ class CrownyCharacter{
     for(let y=h*.25;y<h*.94;y+=1){const dx=Math.sin(y/h*15.36+t*2.8)*w*.021;c.drawImage(this.image,0,y/h*this.image.height,this.image.width,this.image.height/h,cx-w/2+dx,top+y,w,1.2)}
     const sweep=cx+Math.sin(t*.87)*w*.79,g=c.createLinearGradient(sweep-w*.115,top,sweep+w*.115,top+h);g.addColorStop(0,'#ffffff00');g.addColorStop(.5,'#f0fcff99');g.addColorStop(1,'#ffffff00');c.fillStyle=g;c.fillRect(cx-w/2,top,w,h);c.restore()
   }
-  draw(now){const c=this.ctx,w=this.canvas.width,h=this.canvas.height;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,w,h);const t=(now-this.start)/1000,state=this.state;let bob=this.reduced?0:Math.sin(t*1.8)*2.5,tilt=0,scale=1;if(state==='follow')tilt=this.pointer.dx*.12;if(state==='surprise'){scale=1+Math.sin(Math.min(1,t/.22)*Math.PI)*.09;bob=-7*Math.sin(Math.min(1,t/.35)*Math.PI)}if(state==='settle')tilt=Math.sin(t*11)*.055*Math.max(0,1-t/.8);if(state==='greet')tilt=Math.sin(t*2.6)*.035;if(state==='work')tilt=.05;if(state==='search')tilt=Math.sin(t*1.8)*.045;if(state==='sleep')scale=.94;if(state==='warn')scale=.97+Math.sin(t*12)*.012;
-    const cx=w/2,base=h*.84;this.ripples(cx,base+4,t,this.canvas.closest('.splash')!==null);c.save();c.translate(cx,base+bob);c.rotate(tilt);c.scale(scale*1.16,scale);const bodyW=Math.min(w*.54,146),bodyH=bodyW*1.03;c.drawImage(this.image,-bodyW/2,-bodyH,bodyW,bodyH);this.caustics(0,-bodyH,bodyW,bodyH,t);this.face(2,-bodyH*.48,state,t);this.arms(0,-bodyH*.39,state,t,bodyW);const cm=this.crownMotion(state,t);this.crown(cm.x,-bodyH*.86-10+cm.y,.68,cm.r);c.restore()
+  draw(now){const c=this.ctx,w=this.canvas.width,h=this.canvas.height;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,w,h);const t=(now-this.start)/1000,state=this.state;let bob=this.reduced?0:Math.sin(t*1.8)*2.5,tilt=0,scale=1;if(state==='follow')tilt=this.pointer.dx*.12;if(state==='surprise'){scale=1+Math.sin(Math.min(1,t/.22)*Math.PI)*.09;bob=-7*Math.sin(Math.min(1,t/.35)*Math.PI)}if(state==='settle')tilt=Math.sin(t*11)*.055*Math.max(0,1-t/.8);if(state==='curious')tilt=-.075+Math.sin(t*1.1)*.015;if(state==='greet')tilt=Math.sin(t*2.6)*.035;if(state==='work')tilt=.05;if(state==='search')tilt=Math.sin(t*1.8)*.045;if(state==='sleep')scale=.94;if(state==='warn')scale=.97+Math.sin(t*12)*.012;
+    const cx=w/2,base=h*.84;this.ripples(cx,base+4,t,this.canvas.closest('.splash')!==null);c.save();c.translate(cx,base+bob);c.rotate(tilt);c.scale(scale*1.16,scale);const bodyW=Math.min(w*.54,146),bodyH=bodyW*1.03;c.drawImage(this.image,-bodyW/2,-bodyH,bodyW,bodyH);this.caustics(0,-bodyH,bodyW,bodyH,t);this.face(2,-bodyH*.48,state,t);this.arms(0,-bodyH*.39,state,t,bodyW);const cm=this.crownMotion(state,t);/* Original reference has its crown embedded in the body image. */c.restore()
   }
 }
 window.CrownyCharacter=CrownyCharacter;

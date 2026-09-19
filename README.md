@@ -28,3 +28,10 @@ CrownyCharacters.setState('character-id', 'work');
 ```
 
 스플래시 자동 전환은 `index.html`의 `AUTO_ADVANCE_SPLASH` 값으로 바꿀 수 있습니다.
+
+## 최초 왕관 비교본
+첨부한 원본의 왕관 포함 이미지를 사용합니다. 두 버전의 앱 레이아웃과 이전·다음 이동은 같습니다. 원본 왕관은 본체에 포함되어 있어 이 비교본에서는 왕관만 독립적으로 떨어지는 효과를 적용하지 않습니다.
+
+
+## Codrops RainEffect integration
+Login background now uses the adapted Codrops normal-map/refraction renderer with existing CROWNY droplet motion and touch wiping. WebGL unavailable: previous Canvas sprite renderer remains. Four weather preview modes are manual, not live weather data. Future provider calls window.CrownyWeather.set(mode). No location is collected. UI refraction snapshot stays in memory and excludes inputs and the character. Open login-preview.html for the embedded offline preview; index.html includes the full app. Third-party notices must travel with this package.
